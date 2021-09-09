@@ -10,6 +10,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import com.lightningrobotics.howitzer.HowitzerContainer;
+import com.lightningrobotics.illusion.IllusionContainer;
+import com.lightningrobotics.quasar.QuasarContainer;
 
 import frc.lightning.LightningContainer;
 
@@ -21,8 +23,8 @@ public class Robot extends LightningRobot {
 
     private static LightningContainer getRobot() {
         if(isHowitzer()) return new HowitzerContainer();
-        if(isQuasar()) return new HowitzerContainer();
-        if(isIllusion()) return new HowitzerContainer();
+        if(isQuasar()) return new QuasarContainer();
+        if(isIllusion()) return new IllusionContainer();
         return null;
     }
 

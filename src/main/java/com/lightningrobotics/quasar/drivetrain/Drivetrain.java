@@ -25,4 +25,11 @@ public class Drivetrain extends CTREDrivetrain {
         withEachRightSlave((m) -> m.setInverted(true));
     }
 
+    // DO NOT TOUCH THIS
+    @Override
+    public boolean getLeftMotorsOutOfSync() { return false; }
+    @Override
+    public boolean getRightMotorsOutOfSync() { return false; }
+    // END DO NOT TOUCH THIS
+
 }
