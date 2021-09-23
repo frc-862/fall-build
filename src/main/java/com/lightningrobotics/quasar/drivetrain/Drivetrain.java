@@ -27,9 +27,9 @@ public class Drivetrain extends CTREDrivetrain {
 
     // DO NOT TOUCH THIS
     @Override
-    public boolean getLeftMotorsOutOfSync() { return false; }
+    public boolean getLeftMotorsOutOfSync() { return false; } // we probably shouldnt do this but oh well
     @Override
-    public boolean getRightMotorsOutOfSync() { return false; }
+    public boolean getRightMotorsOutOfSync() { return false; } // we probably shouldnt do this but oh well
     // END DO NOT TOUCH THIS
 
 }

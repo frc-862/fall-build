@@ -4,6 +4,7 @@ import com.lightningrobotics.illusion.drivetrain.Drivetrain;
 import com.lightningrobotics.illusion.drivetrain.JoystickConstants;
 import com.lightningrobotics.illusion.drivetrain.IllusionConfig;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.lightning.LightningConfig;
@@ -16,9 +17,7 @@ import frc.lightning.subsystems.IMU;
 public class IllusionContainer extends LightningContainer {
 
     // GAMEPADS
-    private static final Joystick driverLeft = new Joystick(JoystickConstants.DRIVER_LEFT);
-    private static final Joystick driverRight = new Joystick(JoystickConstants.DRIVER_RIGHT);
-    private static final XboxController operator = new XboxController(JoystickConstants.OPERATOR);
+    private static final XboxController driver = new XboxController(JoystickConstants.DRIVER);
 
     // ROBOT COMPONENTS
     private static final LightningConfig config = new IllusionConfig();
@@ -35,7 +34,7 @@ public class IllusionContainer extends LightningContainer {
 
     @Override
     protected void configureDefaultCommands() {
-        drivetrain.setDefaultCommand(new VoltDrive(drivetrain, () -> -driverLeft.getY(), () -> -driverRight.getY()));
+        drivetrain.setDefaultCommand(new VoltDrive(drivetrain, () -> -driver.getY(GenericHID.Hand.kLeft), () -> -driver.getY(GenericHID.Hand.kRight)));
     }
 
     @Override
