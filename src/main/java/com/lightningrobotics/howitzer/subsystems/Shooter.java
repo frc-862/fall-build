@@ -21,16 +21,15 @@ import com.lightningrobotics.howitzer.HowitzerConstants.*;
 
 public class Shooter extends SubsystemBase {
 
+  // Motor stuff
   private CANSparkMax motor1;
   private CANEncoder motor1encoder;
-  
-  public double motor1setpoint = 0;
+  private CANPIDController motor1PIDFController;
 
-  private double setSpeed = 0;
+  public double motor1setpoint = 0; // what we want it to be
+  private double setSpeed = 0; // what were setting when we call the function  
 
   private static final int PRACTICAL_RPM_MAX = 5000;
-
-  private CANPIDController motor1PIDFController;
 
   private boolean armed = false; 
 
@@ -48,6 +47,7 @@ public class Shooter extends SubsystemBase {
   public Shooter() {
     NetworkTableInstance.getDefault().getTable("Shooter").getEntry("Velocity").setDouble(motor1setpoint);
 
+    // MOTOR CONFIG 
     motor1 = new CANSparkMax(ShooterConstants.SHOOTER_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
     motor1.setInverted(false); // TODO: check to see if this needs to be change 
     motor1PIDFController = motor1.getPIDController();
@@ -60,8 +60,7 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() {
-    motor1setpoint = NetworkTableInstance.getDefault().getTable("Shooter").getEntry("Velocity").getDouble(motor1setpoint); // SmartDashboard.putNumber("Shooter Motor Velocity", motor1encoder.getVelocity());
-    
+    SmartDashboard.putNumber("Shooter Velocity", getShooterVelocity());
   }
 
   public void setPower(double pwr) {
@@ -70,10 +69,11 @@ public class Shooter extends SubsystemBase {
 
   public void setShooterVelocity(double velocity) {
       setSpeed = velocity;
-      if(setSpeed > 100){ // if motors running 
-          this.motor1PIDFController.setReference(LightningMath.constrain(motor1setpoint, 0, PRACTICAL_RPM_MAX), ControlType.kVelocity);
+      if(setSpeed > 100){ // if motors running
+        this.motor1PIDFController.setReference(LightningMath.constrain(setSpeed, 0, PRACTICAL_RPM_MAX), ControlType.kVelocity);
       } else { // setting motors equal to zero
-          motor1setpoint = 0;
+          setSpeed = 0;
+          this.motor1PIDFController.setReference(0, ControlType.kVoltage);
       }
   }
 

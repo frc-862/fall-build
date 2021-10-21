@@ -8,7 +8,6 @@ public class RunShooter extends CommandBase {
 
     private Shooter shooter;
 
-
     public RunShooter(Shooter shooter){
         this.shooter = shooter;
 
