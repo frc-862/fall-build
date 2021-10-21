@@ -13,7 +13,7 @@ public class HowitzerConstants {
     }
 
     public static class JoystickConstants {
-        public static final int DRIVER_CONTROLLER = 0;
+        public static final int OPERATOR = 0;
     }
 
 }
