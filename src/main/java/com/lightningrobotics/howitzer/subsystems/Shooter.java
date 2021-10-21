@@ -30,6 +30,7 @@ public class Shooter extends SubsystemBase {
   private double setSpeed = 0; // what were setting when we call the function  
 
   private static final int PRACTICAL_RPM_MAX = 5000;
+  private int test = 1;
 
   private boolean armed = false; 
 
