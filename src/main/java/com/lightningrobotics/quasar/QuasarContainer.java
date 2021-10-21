@@ -1,10 +1,17 @@
 package com.lightningrobotics.quasar;
 
+import java.security.cert.CollectionCertStoreParameters;
+import java.util.Map;
+
 import com.lightningrobotics.quasar.drivetrain.Drivetrain;
 import com.lightningrobotics.quasar.drivetrain.QuasarConfig;
+import com.lightningrobotics.quasar.subsystems.Collector;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.lightning.LightningConfig;
 import frc.lightning.LightningContainer;
 import frc.lightning.commands.VoltDrive;
@@ -22,6 +29,7 @@ public class QuasarContainer extends LightningContainer {
 
     // SUBSYSTEMS
     private static final LightningDrivetrain drivetrain = new Drivetrain(config, imu.heading(), imu.zero());
+    private static final Collector collector = new Collector();
 
     @Override
     protected void configureDefaultCommands() {
@@ -38,7 +46,11 @@ public class QuasarContainer extends LightningContainer {
     protected void releaseDefaultCommands() { }
 
     @Override
-    protected void initializeDashboardCommands() { }
+    protected void initializeDashboardCommands() 
+    { 
+        Shuffleboard.getTab("collector").add("SetPoint", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of(min));
+
+    }
 
     @Override
     protected void configureAutonomousCommands() { }
