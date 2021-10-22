@@ -1,5 +1,7 @@
 package com.lightningrobotics.illusion.drivetrain;
 
+import com.revrobotics.CANSparkMax;
+
 import frc.lightning.util.LightningMath;
 
 public class RobotConstants {

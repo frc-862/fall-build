@@ -6,6 +6,7 @@ package com.lightningrobotics.illusion.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.lightningrobotics.illusion.drivetrain.RobotMap;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -16,7 +17,7 @@ public class Indexer extends SubsystemBase {
   
   /** Creates a new Indexer. */
   public Indexer() {
-    indexer = new VictorSPX(1); // TODO: change later when we know what port
+    indexer = new VictorSPX(RobotMap.INDEXER_ID); // TODO: change later when we know what port
   } 
 
   @Override
@@ -30,6 +31,10 @@ public class Indexer extends SubsystemBase {
 
   public void stop() {
     setPower(0);
+  }
+
+  public void feedShooter() {
+    setPower(1);
   }
 
 }

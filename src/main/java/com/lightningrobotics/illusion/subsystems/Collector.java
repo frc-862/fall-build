@@ -6,6 +6,7 @@ package com.lightningrobotics.illusion.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.lightningrobotics.illusion.drivetrain.RobotMap;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -15,8 +16,8 @@ public class Collector extends SubsystemBase {
   Servo dropMotor;
 
   public Collector() {
-    collector = new VictorSPX(1); // TODO: change device number later
-    dropMotor = new Servo(1); // TODO: change device number later
+    collector = new VictorSPX(RobotMap.COLLECTOR_ID); // TODO: change device number later
+    //dropMotor = new Servo(1); // TODO: change device number later
   }
 
   public void setCollectorPower(double pwr){
