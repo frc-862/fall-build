@@ -4,20 +4,37 @@
 
 package com.lightningrobotics.illusion.subsystems;
 
+import java.net.CacheRequest;
+
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.lightningrobotics.illusion.IllusionContainer;
+import com.lightningrobotics.illusion.drivetrain.RobotMap;
+import com.revrobotics.CANPIDController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
   
-  private VictorSPX shooter;
-  
-  /** Creates a new Indexer. */
+  private CANSparkMax shooter;
+
+  // private CANPIDController shooterPIDFController;
+  /** Creates a new Indexer. 
+   * @param Constants */
   public Shooter() {
-    shooter = new VictorSPX(1); // TODO: change later when we know what port
+
+    shooter = new CANSparkMax(RobotMap.SHOOTER_ID, MotorType.kBrushless); // TODO: change later when we know what port
+    
+    shooter.setIdleMode(CANSparkMax.IdleMode.kCoast);
+    shooter.setInverted(true); // TODO: Change if necessary
+    shooter.setClosedLoopRampRate(.02);
+    // shooterPIDFController = shooter.getPIDController();
+
+    // setGains(shooterPIDFController);
   } 
 
   @Override
@@ -25,16 +42,12 @@ public class Shooter extends SubsystemBase {
     // SmartDashboard.putData("setPower", setPower());
   }
 
-  public void setPower(double pwr) {
-    shooter.set(ControlMode.PercentOutput, pwr);
-  }
-
-  public void shoot() {
-
+  public void setSpeed(double speed) {
+    shooter.set(speed);
   }
 
   public void stop() {
-    setPower(0);
+    setSpeed(0);
   }
 
 }
