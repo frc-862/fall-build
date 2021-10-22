@@ -18,18 +18,19 @@ public class RunIndexer extends CommandBase {
     this.indexer = indexer;
 
     addRequirements(indexer);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    indexer.setPower(power);
+    indexer.setOpen();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    indexer.setPower(power);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
