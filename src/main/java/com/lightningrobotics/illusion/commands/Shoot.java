@@ -4,13 +4,10 @@
 
 package com.lightningrobotics.illusion.commands;
 
-import com.lightningrobotics.illusion.IllusionContainer;
 import com.lightningrobotics.illusion.subsystems.Indexer;
 import com.lightningrobotics.illusion.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Shoot extends CommandBase {
@@ -29,7 +26,7 @@ public class Shoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter.setSpeed(0.5); // TODO: change later
+    shooter.setShooterVelocity(0.5); // TODO: change later
     
     time = Timer.getFPGATimestamp();
   }

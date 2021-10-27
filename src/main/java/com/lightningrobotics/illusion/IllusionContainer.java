@@ -12,7 +12,6 @@ import com.lightningrobotics.illusion.drivetrain.IllusionConfig;
 
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -97,7 +96,7 @@ public class IllusionContainer extends LightningContainer {
         shooter_tab.add("Shoot for 5 sec (with index)", new Shoot(indexer, shooter));
 
         shooterSpeed.addListener((e) -> {
-            shooter.setSpeed(shooterSpeed.getDouble(0)); 
+            shooter.setShooterVelocity(shooterSpeed.getDouble(0)); 
         }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
         

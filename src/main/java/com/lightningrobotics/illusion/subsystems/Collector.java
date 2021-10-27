@@ -8,16 +8,13 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.lightningrobotics.illusion.drivetrain.RobotMap;
 
-import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Collector extends SubsystemBase {
   VictorSPX collector;
-  Servo dropMotor;
 
   public Collector() {
-    collector = new VictorSPX(RobotMap.COLLECTOR_ID); // TODO: change device number later
-    //dropMotor = new Servo(1); // TODO: change device number later
+    collector = new VictorSPX(RobotMap.COLLECTOR_ID); 
   }
 
   public void setCollectorPower(double pwr){
@@ -27,15 +24,6 @@ public class Collector extends SubsystemBase {
   public void stopCollecting() {
     setCollectorPower(0);
   }
-  
-  public void drop() {
-    dropMotor.setAngle(1); // TODO: set later (degrees)
-  }
-
-  public void lift() {
-    dropMotor.setAngle(0); // TODO: set later (degrees)
-  } 
-
 
   @Override
   public void periodic() {
