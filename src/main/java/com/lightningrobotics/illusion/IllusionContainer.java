@@ -40,9 +40,7 @@ public class IllusionContainer extends LightningContainer {
 
     @Override
     protected void configureButtonBindings() {
-        // (new JoystickButton(driver, 5)).whileHeld(new InstantCommand(() -> {indexer.setPower(0.5); System.out.println("oisfjoisd");}));
-        // (new JoystickButton(driver, 6)).whileHeld(new InstantCommand(() -> shooter.setSpeed(0.5)));
-        (new JoystickButton(driver, 6)).whenPressed(new Shoot(indexer, shooter));
+        (new JoystickButton(driver, 6)).whenPressed(new Shoot(indexer, shooter)); // when hit left button it runs Shoot() command
 
 
     }
@@ -52,7 +50,6 @@ public class IllusionContainer extends LightningContainer {
 
     @Override
     protected void configureDefaultCommands() {
-        // shooter.setDefaultCommand(new Shoot(indexer, shooter));
         drivetrain.setDefaultCommand(new VoltDrive(drivetrain, () -> -driver.getY(GenericHID.Hand.kLeft), () -> -driver.getY(GenericHID.Hand.kRight)));
     }
 
@@ -73,7 +70,6 @@ public class IllusionContainer extends LightningContainer {
             indexer.setPower(indexerSpeed.getDouble(0)); // creates a listener that watches the indexerSpeed tab and sets the power to the value of the tab 
         }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
         
-        // indexer_tab.addBoolean("isTriggerPressed", )
         // Collector Tab
         final var collector_tab = Shuffleboard.getTab("Collector");
 
@@ -89,7 +85,7 @@ public class IllusionContainer extends LightningContainer {
         // Shooter Tab
         final var shooter_tab = Shuffleboard.getTab("Shooter");
 
-        final var shooterSpeed = shooter_tab.add("SetShooterSpeed", 0) // same as shooter speed but with collector
+        final var shooterSpeed = shooter_tab.add("SetShooterSpeed", 0) // same as indexer speed but with shooter
         .withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", -1, "max", 1)).getEntry(); 
 
         shooter_tab.add("Stop Shooting", new InstantCommand(() -> shooter.stop(), shooter));

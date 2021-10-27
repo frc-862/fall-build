@@ -16,24 +16,21 @@ public class Indexer extends SubsystemBase {
   
   /** Creates a new Indexer. */
   public Indexer() {
-    indexer = new VictorSPX(RobotMap.INDEXER_ID); 
+    indexer = new VictorSPX(RobotMap.INDEXER_ID); // identify indexer motor
   } 
 
   @Override
   public void periodic() {
-    // SmartDashboard.putData("setPower", setPower());
   }
 
   public void setPower(double pwr) {
-    indexer.set(ControlMode.PercentOutput, pwr);
+    indexer.set(ControlMode.PercentOutput, pwr); // set indexer power
   }
-
   public void stop() {
-    setPower(0);
+    setPower(0); // call setPower and set it to 0
   }
 
   public void feedShooter() {
-    setPower(1);
+    setPower(1); // call setPower and set it to 1
   }
-
 }

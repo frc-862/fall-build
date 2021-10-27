@@ -14,15 +14,15 @@ public class Collector extends SubsystemBase {
   VictorSPX collector;
 
   public Collector() {
-    collector = new VictorSPX(RobotMap.COLLECTOR_ID); 
+    collector = new VictorSPX(RobotMap.COLLECTOR_ID); // identify collector motor
   }
 
   public void setCollectorPower(double pwr){
-    collector.set(ControlMode.PercentOutput, pwr);
+    collector.set(ControlMode.PercentOutput, pwr); // set motor power
   }
 
   public void stopCollecting() {
-    setCollectorPower(0);
+    setCollectorPower(0); // call setCollectorPower and set it to 0
   }
 
   @Override

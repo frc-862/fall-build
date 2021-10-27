@@ -16,19 +16,19 @@ import frc.lightning.util.REVGains;
 
 public class Shooter extends SubsystemBase {
   
-  private CANSparkMax shooter;
+  private CANSparkMax shooter; // set shooter motor
 
-  private CANPIDController shooterPIDFController;
+  private CANPIDController shooterPIDFController; // identify pid controller
 
-  private double setSpeed = 0;
-  public double shootersetpoint = 0;
+  private double setSpeed = 0; // setSpeed variable (initially 0)
+  public double shootersetpoint = 0; // shootersetpoint (initially 0)
 
-  double backspin = 1500;
-  private static final int PRACTICAL_RPM_MAX = 5000;
+  double backspin = 1500; // set backspin
+  private static final int PRACTICAL_RPM_MAX = 5000; // set practical limit for the motor
   /** Creates a new Shoooter. 
    * @param Constants */
 
-  private static void setGains(CANPIDController controller, REVGains gains) {
+  private static void setGains(CANPIDController controller, REVGains gains) { // setGains function, set the controller values
     controller.setP(gains.getkP());
     controller.setI(gains.getkI());
     controller.setD(gains.getkD());
@@ -38,21 +38,20 @@ public class Shooter extends SubsystemBase {
   }
   public Shooter() {
 
-    shooter = new CANSparkMax(RobotMap.SHOOTER_ID, MotorType.kBrushless);
+    shooter = new CANSparkMax(RobotMap.SHOOTER_ID, MotorType.kBrushless); // initiate shooter motor with shooter id
     
-    shooter.setIdleMode(CANSparkMax.IdleMode.kCoast);
+    shooter.setIdleMode(CANSparkMax.IdleMode.kCoast); // set idlemode
     shooter.setInverted(true); // TODO: Change if necessary
-    shooter.setClosedLoopRampRate(.02);
-    shooterPIDFController = shooter.getPIDController();
+    shooter.setClosedLoopRampRate(.02); // maximum rate of change
+    shooterPIDFController = shooter.getPIDController(); // take pidf controller
 
-    setGains(shooterPIDFController, RobotMap.shooterGains);
+    setGains(shooterPIDFController, RobotMap.shooterGains); // set gains of the shooter pidf controller   
 
-    shooter.burnFlash();
+    shooter.burnFlash(); // add settings to the shooter
   } 
 
   @Override
   public void periodic() {
-    // SmartDashboard.putData("setPower", setPower());
   }
 
   public void setShooterVelocity(double velocity) {
@@ -64,7 +63,13 @@ public class Shooter extends SubsystemBase {
         shootersetpoint = 0;
         this.shooterPIDFController.setReference(0, ControlType.kVoltage);
     }
-}
+ }
+
+ /*
+ public void setShooterVelocity(double velocity) {
+   shooter.set(velocity);
+ }
+*/
 
   public void stop() {
     setShooterVelocity(0);
