@@ -27,6 +27,7 @@ public class Shoot extends CommandBase {
   @Override
   public void initialize() {
     shooter.setShooterVelocity(0.5); // TODO: change later
+    Timer.delay(1); // pause for a second to let shooter speed up 
     indexer.feedShooter(); // set indexer velocity and shooter velocity
 
     time = Timer.getFPGATimestamp(); // initiate time
@@ -36,7 +37,7 @@ public class Shoot extends CommandBase {
   @Override
   public void execute() {
   }
-
+ 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
