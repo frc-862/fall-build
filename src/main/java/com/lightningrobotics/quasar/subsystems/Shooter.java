@@ -16,13 +16,10 @@ public class Shooter extends SubsystemBase {
 
   public Shooter() {
     motor = new CANSparkMax(0, MotorType.kBrushed);
-    var vic = new VictorSPX(0);
   }
 
   public void setSpeed(double speed){motor.set(speed);}
   public void stop(){setSpeed(0);}
-  public void indexer(double speed){motor.set(speed);};
-
 
   @Override
   public void periodic() {

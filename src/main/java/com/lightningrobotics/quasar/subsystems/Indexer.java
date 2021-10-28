@@ -5,26 +5,21 @@
 package com.lightningrobotics.quasar.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Collector extends SubsystemBase {
-  /** Creates a new Collector. */
-  CANSparkMax motor = new CANSparkMax(0, MotorType.kBrushed);
+public class Indexer extends SubsystemBase {
+  VictorSPX motor = new VictorSPX(0); // Change to correct indexer ID
+  public Indexer() {}
 
-  public void collect(double speed) 
-  {
-    motor.set(speed);
+  public void index(double speed) {
+    motor.set(ControlMode.PercentOutput, speed);
   }
 
-  public void stop() 
-  {
-    collect(0);
+  public void stop() {
+    index(0);
   }
-
-  public Collector() {}
 
   @Override
   public void periodic() {
