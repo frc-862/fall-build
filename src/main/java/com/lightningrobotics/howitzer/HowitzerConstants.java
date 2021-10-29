@@ -10,6 +10,7 @@ public class HowitzerConstants {
     public static class IndexerConstants{
         public static final int INDEXER_MOTOR = 1; // TODO: change when we know the port or can id
         public static final int INDEXER_SERVO = 1; // TODO: change when we know the port
+        public static final double MOTOR_POWER = 0.2; // TODO: change to the proper speed 
     }
 
     public static class ShooterConstants{

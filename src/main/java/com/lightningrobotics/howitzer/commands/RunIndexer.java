@@ -11,11 +11,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class RunIndexer extends CommandBase {
 
   private Indexer indexer;
-  private double power = 0.2; // TODO: change to the proper speed
+  double power;
 
   /** Creates a new RunIndexer. */
-  public RunIndexer(Indexer indexer) {
+  public RunIndexer(Indexer indexer, double pwr) {
     this.indexer = indexer;
+    pwr = power;
 
     addRequirements(indexer);
   }

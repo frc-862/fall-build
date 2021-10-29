@@ -1,5 +1,6 @@
 package com.lightningrobotics.howitzer;
 
+import com.lightningrobotics.howitzer.HowitzerConstants.IndexerConstants;
 import com.lightningrobotics.howitzer.HowitzerConstants.JoystickConstants;
 import com.lightningrobotics.howitzer.commands.RunIndexer;
 import com.lightningrobotics.howitzer.commands.RunShooter;
@@ -52,8 +53,8 @@ public class HowitzerContainer extends LightningContainer {
     @Override
     protected void configureButtonBindings() { 
         (new JoystickButton(operator, 1)).whileHeld(new RunShooter(shooter)); // TODO: change the the button we want to run the shooter
-        (new JoystickButton(operator, 1)).whileHeld(new RunIndexer(indexer)); // TODO: change the the button we want to run the shooter
-
+        (new JoystickButton(operator, 1)).whileHeld(new RunIndexer(indexer, IndexerConstants.MOTOR_POWER)); // TODO: change the the button we want to run the shooter
+        (new JoystickButton(operator, 2)).whileHeld(new RunIndexer(indexer, -IndexerConstants.MOTOR_POWER)); // reverse and ^
     }
 
     @Override
