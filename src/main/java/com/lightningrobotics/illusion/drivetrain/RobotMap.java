@@ -25,7 +25,7 @@ public class RobotMap {
     public static final int RIGHT_ENCODER_CHANNEL_B = 3;
 
     // COLLECTOR
-    public static final int COLLECTOR_ID = 10;
+    public static final int COLLECTOR_ID = 11;
 
     // SHOOTER
     public static final int SHOOTER_ID = 8;
@@ -34,4 +34,6 @@ public class RobotMap {
 
     // INDEXER
     public static final int INDEXER_ID = 12;
+    
+    // TODO: add correct ids ASAP
 }

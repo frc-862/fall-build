@@ -40,11 +40,10 @@ public class IllusionContainer extends LightningContainer {
 
     @Override
     protected void configureButtonBindings() {
-        (new JoystickButton(driver, 6)).whenPressed(new Shoot(indexer, shooter)); // when hit left button it runs Shoot() command
-
-
+        (new JoystickButton(driver, 5)).whenPressed(new Shoot(indexer, shooter)); // when hit left bumper it runs Shoot() command
+        (new JoystickButton(driver, 6)).whenPressed(new InstantCommand(() -> collector.SetCollectorSpeed(0.5))); // when hit right bumper it starts collector    }
     }
-
+    
     @Override
     protected void configureSystemTests() {}
 
@@ -69,7 +68,7 @@ public class IllusionContainer extends LightningContainer {
         indexerSpeed.addListener((e) -> {
             indexer.setPower(indexerSpeed.getDouble(0)); // creates a listener that watches the indexerSpeed tab and sets the power to the value of the tab 
         }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
-        
+
         // Collector Tab
         final var collector_tab = Shuffleboard.getTab("Collector");
 
@@ -79,7 +78,7 @@ public class IllusionContainer extends LightningContainer {
                 .withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", -1, "max", 1)).getEntry(); 
         
         collectorSpeed.addListener((e) -> {
-            collector.setCollectorPower(collectorSpeed.getDouble(0));
+            collector.SetCollectorSpeed(collectorSpeed.getDouble(0));
         }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
         
         // Shooter Tab

@@ -4,25 +4,25 @@
 
 package com.lightningrobotics.illusion.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.lightningrobotics.illusion.drivetrain.RobotMap;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Collector extends SubsystemBase {
-  VictorSPX collector;
+  CANSparkMax collector;
 
   public Collector() {
-    collector = new VictorSPX(RobotMap.COLLECTOR_ID); // identify collector motor
+    collector = new CANSparkMax(RobotMap.COLLECTOR_ID, MotorType.kBrushless); // identify collector motor
   }
 
-  public void setCollectorPower(double pwr){
-    collector.set(ControlMode.PercentOutput, pwr); // set motor power
+  public void SetCollectorSpeed(double speed){
+    collector.set(speed); // set motor power
   }
 
   public void stopCollecting() {
-    setCollectorPower(0); // call setCollectorPower and set it to 0
+    SetCollectorSpeed(0); // call setCollectorPower and set it to 0
   }
 
   @Override
