@@ -25,15 +25,15 @@ public class RobotMap {
     public static final int RIGHT_ENCODER_CHANNEL_B = 3;
 
     // COLLECTOR
-    public static final int COLLECTOR_ID = 11;
+    public static final int COLLECTOR_ID = 11; // victor
 
     // SHOOTER
     public static final int SHOOTER_ID = 8;
-    public static final int NEO_MAX_RPM = 5700;
+    public static final int NEO_MAX_RPM = 5700; // can spark max
     public static REVGains shooterGains = new REVGains(.00026, 0.000000004, 0.0, 0.000175, 0.0, 1.0, -1.0, NEO_MAX_RPM);
 
     // INDEXER
-    public static final int INDEXER_ID = 12;
+    public static final int INDEXER_ID = 12; // can spark max
     
     // TODO: add correct ids ASAP
 }

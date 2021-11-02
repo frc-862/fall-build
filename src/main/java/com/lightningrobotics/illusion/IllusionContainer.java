@@ -26,7 +26,7 @@ import frc.lightning.subsystems.IMU;
 public class IllusionContainer extends LightningContainer {
 
     // GAMEPADS
-    private static final XboxController driver = new XboxController(JoystickConstants.DRIVER);
+    private static final XboxController control = new XboxController(JoystickConstants.DRIVER);
 
     // ROBOT COMPONENTS
     private static final LightningConfig config = new IllusionConfig();
@@ -40,8 +40,9 @@ public class IllusionContainer extends LightningContainer {
 
     @Override
     protected void configureButtonBindings() {
-        (new JoystickButton(driver, 5)).whenPressed(new Shoot(indexer, shooter)); // when hit left bumper it runs Shoot() command
-        (new JoystickButton(driver, 6)).whenPressed(new InstantCommand(() -> collector.SetCollectorSpeed(0.5))); // when hit right bumper it starts collector    }
+        // (new JoystickButton(control, 5)).whenPressed(new Shoot(indexer, shooter)); // when hit left bumper it runs Shoot() command
+        (new JoystickButton(control, 5)).whenPressed(new InstantCommand(() -> shooter.setShooterVelocity(0.2)));
+        (new JoystickButton(control, 6)).whenPressed(new InstantCommand(() -> collector.SetCollectorSpeed(0.2))); // when hit right bumper it starts collector    }
     }
     
     @Override
@@ -49,7 +50,7 @@ public class IllusionContainer extends LightningContainer {
 
     @Override
     protected void configureDefaultCommands() {
-        drivetrain.setDefaultCommand(new VoltDrive(drivetrain, () -> -driver.getY(GenericHID.Hand.kLeft), () -> -driver.getY(GenericHID.Hand.kRight)));
+        drivetrain.setDefaultCommand(new VoltDrive(drivetrain, () -> -control.getY(GenericHID.Hand.kLeft), () -> -control.getY(GenericHID.Hand.kRight)));
     }
 
     @Override

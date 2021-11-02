@@ -31,6 +31,6 @@ public class Indexer extends SubsystemBase {
   }
 
   public void feedShooter() {
-    setPower(1); // call setPower and set it to 1
+    setPower(0.1); // call setPower and set it to 1
   }
 }
