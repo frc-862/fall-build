@@ -26,7 +26,7 @@ public class Shoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter.setShooterVelocity(0.5); // TODO: change later
+    shooter.setShooterVelocity(0.2); // TODO: change later
     Timer.delay(1); // pause for a second to let shooter speed up 
     indexer.feedShooter(); // set indexer velocity and shooter velocity
 

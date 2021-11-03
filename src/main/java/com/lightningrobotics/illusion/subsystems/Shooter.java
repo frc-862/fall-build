@@ -39,17 +39,15 @@ public class Shooter extends SubsystemBase {
   public Shooter() {
 
     shooter = new CANSparkMax(RobotMap.SHOOTER_ID, MotorType.kBrushless); // initiate shooter motor with shooter id
-    
+    shooter.setInverted(true);
     /*
     shooter.setIdleMode(CANSparkMax.IdleMode.kCoast); // set idlemode
-    shooter.setInverted(true); // TODO: Change if necessary
     shooter.setClosedLoopRampRate(.02); // maximum rate of change
     shooterPIDFController = shooter.getPIDController(); // take pidf controller
 
     setGains(shooterPIDFController, RobotMap.shooterGains); // set gains of the shooter pidf controller   
-
-    shooter.burnFlash(); // add settings to the shooter
     */
+    shooter.burnFlash();
   } 
 
   @Override

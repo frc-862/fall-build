@@ -40,9 +40,10 @@ public class IllusionContainer extends LightningContainer {
 
     @Override
     protected void configureButtonBindings() {
-        // (new JoystickButton(control, 5)).whenPressed(new Shoot(indexer, shooter)); // when hit left bumper it runs Shoot() command
-        (new JoystickButton(control, 5)).whenPressed(new InstantCommand(() -> shooter.setShooterVelocity(0.2)));
-        (new JoystickButton(control, 6)).whenPressed(new InstantCommand(() -> collector.SetCollectorSpeed(0.2))); // when hit right bumper it starts collector    }
+        (new JoystickButton(control, 5)).whenPressed(new Shoot(indexer, shooter)); // when hit left bumper it runs Shoot() command
+        // (new JoystickButton(control, 5)).whileHeld(new InstantCommand(() -> shooter.setShooterVelocity(-0.2)));
+        // (new JoystickButton(control, 6)).whenPressed(new InstantCommand(() -> collector.SetCollectorSpeed(0.2))); // when hit right bumper it starts collector    }
+        (new JoystickButton(control, 6)).whenPressed(new InstantCommand(() -> shooter.stop()));
     }
     
     @Override
