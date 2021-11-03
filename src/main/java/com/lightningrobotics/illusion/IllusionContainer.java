@@ -74,7 +74,7 @@ public class IllusionContainer extends LightningContainer {
         // Collector Tab
         final var collector_tab = Shuffleboard.getTab("Collector");
 
-        collector_tab.add("Stop Collect", new InstantCommand(() -> collector.stopCollecting(), collector));
+        collector_tab.add("Stop Collect", new InstantCommand(() -> collector.stop(), collector));
 
         final var collectorSpeed = collector_tab.add("SetCollectorSpeed", 0) // same as indexer speed but with collector
                 .withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", -1, "max", 1)).getEntry(); 

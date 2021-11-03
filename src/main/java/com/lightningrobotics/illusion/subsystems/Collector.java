@@ -21,7 +21,7 @@ public class Collector extends SubsystemBase {
     collector.set(speed); // set motor power
   }
 
-  public void stopCollecting() {
+  public void stop() {
     SetCollectorSpeed(0); // call setCollectorPower and set it to 0
   }
 
