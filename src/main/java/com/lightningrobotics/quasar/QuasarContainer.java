@@ -45,7 +45,7 @@ public class QuasarContainer extends LightningContainer {
     
     @Override
     protected void configureButtonBindings() {
-        (new JoystickButton(driver, 2)).whenPressed(new InstantCommand(() -> { indexer.index(1); shooter.setSpeed(1); }));  // x
+        (new JoystickButton(driver, 2)).whenPressed(new InstantCommand(() -> { indexer.index(1); shooter.shoot(1); }));  // x
         (new JoystickButton(driver, 2)).whenReleased(new InstantCommand(() -> { indexer.stop(); shooter.stop(); }));
         (new JoystickButton(driver, 0)).whenPressed(new InstantCommand(() -> collector.collect(1))); // a
         (new JoystickButton(driver, 0)).whenReleased(new InstantCommand(() -> collector.stop()));
@@ -60,7 +60,7 @@ public class QuasarContainer extends LightningContainer {
     @Override
     protected void initializeDashboardCommands() 
     { 
-        
+
     }
 
     @Override

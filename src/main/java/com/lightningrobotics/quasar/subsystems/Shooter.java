@@ -18,8 +18,12 @@ public class Shooter extends SubsystemBase {
     motor = new CANSparkMax(0, MotorType.kBrushed);
   }
 
-  public void setSpeed(double speed){motor.set(speed);}
-  public void stop(){setSpeed(0);}
+  public void shoot(double speed){
+    motor.set(speed);
+  }
+  public void stop(){
+    shoot(0);
+  }
 
   @Override
   public void periodic() {
