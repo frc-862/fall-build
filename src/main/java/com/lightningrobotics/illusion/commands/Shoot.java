@@ -26,7 +26,7 @@ public class Shoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter.setShooterVelocity(0.2); // TODO: change later
+    shooter.setShooterVelocity(-0.6); // TODO: change later
     Timer.delay(1); // pause for a second to let shooter speed up 
     indexer.feedShooter(); // set indexer velocity and shooter velocity
 
@@ -48,7 +48,7 @@ public class Shoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return ((Timer.getFPGATimestamp() - time) > 5); // TODO: Change Later
+    return ((Timer.getFPGATimestamp() - time) > 7); // TODO: Change Later
     // when current time exceed 5 seconds past the original time, the command will stop
   }
 }

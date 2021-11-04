@@ -2,6 +2,8 @@ package com.lightningrobotics.illusion.drivetrain;
 
 import java.util.function.Supplier;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
@@ -31,6 +33,7 @@ public class Drivetrain extends NeoDrivetrain {
         leftEncoder.setDistancePerPulse(RobotConstants.ENCODER_PULSE_TO_METERS);
         rightEncoder.setDistancePerPulse(RobotConstants.ENCODER_PULSE_TO_METERS);
 
+        withEachMotor((m) -> m.setIdleMode(IdleMode.kBrake));
         withEachMotor((m) -> m.burnFlash());
 
         brake();
