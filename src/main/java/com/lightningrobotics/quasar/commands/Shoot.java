@@ -4,6 +4,7 @@
 
 package com.lightningrobotics.quasar.commands;
 
+import com.lightningrobotics.quasar.subsystems.Indexer;
 import com.lightningrobotics.quasar.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -11,15 +12,20 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class Shoot extends CommandBase {
   /** Creates a new Shoot. */
   private Shooter shooter;
-  public Shoot(Shooter shooter) {
+  private Indexer indexer;
+  private double power;
+  public Shoot(Shooter shooter, Indexer indexer, double power) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(shooter);
+    addRequirements(shooter, indexer);
     this.shooter = shooter;
+    this.indexer = indexer;
+    this.power = power;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    indexer.index(0.5);
     shooter.shoot(0.5);
   }
 

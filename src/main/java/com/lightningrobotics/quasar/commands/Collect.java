@@ -11,16 +11,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class Collect extends CommandBase {
   /** Creates a new Collect. */
   private Collector collector;
-  public Collect(Collector collector) {
+  private double power;
+  public Collect(Collector collector, double power) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(collector);
     this.collector = collector;
+    this.power = power;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    collector.collect(0.5);
+    collector.collect(power);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

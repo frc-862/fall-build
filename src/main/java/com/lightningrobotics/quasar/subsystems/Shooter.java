@@ -6,6 +6,7 @@ package com.lightningrobotics.quasar.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -16,6 +17,8 @@ public class Shooter extends SubsystemBase {
 
   public Shooter() {
     motor = new CANSparkMax(0, MotorType.kBrushed);
+    motor.burnFlash();
+    motor.setIdleMode(IdleMode.kBrake);
   }
 
   public void shoot(double speed){

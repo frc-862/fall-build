@@ -3,6 +3,8 @@ package com.lightningrobotics.quasar;
 import java.security.cert.CollectionCertStoreParameters;
 import java.util.Map;
 
+import com.lightningrobotics.quasar.commands.Collect;
+import com.lightningrobotics.quasar.commands.Shoot;
 import com.lightningrobotics.quasar.drivetrain.Drivetrain;
 import com.lightningrobotics.quasar.drivetrain.QuasarConfig;
 import com.lightningrobotics.quasar.subsystems.Collector;
@@ -45,10 +47,10 @@ public class QuasarContainer extends LightningContainer {
     
     @Override
     protected void configureButtonBindings() {
-        (new JoystickButton(driver, 2)).whenPressed(new InstantCommand(() -> { indexer.index(1); shooter.shoot(1); }));  // x
-        (new JoystickButton(driver, 2)).whenReleased(new InstantCommand(() -> { indexer.stop(); shooter.stop(); }));
-        (new JoystickButton(driver, 0)).whenPressed(new InstantCommand(() -> collector.collect(1))); // a
-        (new JoystickButton(driver, 0)).whenReleased(new InstantCommand(() -> collector.stop()));
+        (new JoystickButton(driver, 2)).whenPressed(new Shoot(shooter, indexer, 1.0d));  // x
+        (new JoystickButton(driver, 2)).whenReleased(new Shoot(shooter, indexer, 0d));
+        (new JoystickButton(driver, 0)).whenPressed(new Collect(collector, 1.0d)); // a
+        (new JoystickButton(driver, 0)).whenReleased(new Collect(collector, 0d));
      }
 
     @Override
