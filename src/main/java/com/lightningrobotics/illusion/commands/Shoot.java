@@ -48,7 +48,8 @@ public class Shoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return ((Timer.getFPGATimestamp() - time) > 7); // TODO: Change Later
+    // return ((Timer.getFPGATimestamp() - time) > 7); // TODO: Change Later
     // when current time exceed 5 seconds past the original time, the command will stop
+    return false;
   }
 }
