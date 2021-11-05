@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.ControlType;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.util.LightningMath;
@@ -45,7 +46,7 @@ public class Shooter extends SubsystemBase {
 
     // MOTOR CONFIG 
     shooterMotor = new CANSparkMax(ShooterConstants.SHOOTER_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
-    shooterMotor.setInverted(false); // TODO: check to see if this needs to be change 
+    shooterMotor.setInverted(false);
     shooterMotorPIDFController = shooterMotor.getPIDController();
     shooterMotorEncoder = shooterMotor.getEncoder();
 
@@ -57,6 +58,9 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Shooter Velocity", getShooterVelocity());
+    // if(DriverStation.getInstance().isEnabled()) {
+    //   shooterMotor.set(0.75d);
+    // }
   }
 
   public void setPower(double pwr) {

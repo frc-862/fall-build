@@ -16,7 +16,7 @@ public class RunIndexer extends CommandBase {
   /** Creates a new RunIndexer. */
   public RunIndexer(Indexer indexer, double pwr) {
     this.indexer = indexer;
-    pwr = power;
+    power = pwr;
 
     addRequirements(indexer);
   }
@@ -24,7 +24,6 @@ public class RunIndexer extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    indexer.setOpen();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

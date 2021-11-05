@@ -5,6 +5,7 @@
 package com.lightningrobotics.howitzer.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.lightningrobotics.howitzer.HowitzerConstants.IndexerConstants;
@@ -16,20 +17,17 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Indexer extends SubsystemBase {
 
-  private CANSparkMax indexerMotor;
-  private Servo door;
-
-  private int servoDefultAngle = 0; // TODO: change when we know the defult angle for the servo to rest 
+  private VictorSPX indexerMotor;
 
   /** Creates a new Indexer. */
   public Indexer() {
-    indexerMotor = new CANSparkMax(IndexerConstants.INDEXER_MOTOR, MotorType.kBrushed);
-    door = new Servo(IndexerConstants.INDEXER_SERVO);
+    indexerMotor = new VictorSPX(IndexerConstants.INDEXER_MOTOR);
+    indexerMotor.setInverted(true);
 
   }
 
   public void setPower(double pwr){
-    indexerMotor.set(pwr);
+    indexerMotor.set(ControlMode.PercentOutput, pwr);
   }
 
   @Override
@@ -38,16 +36,6 @@ public class Indexer extends SubsystemBase {
   }
 
   public void stop(){
-    setClosed();
-    indexerMotor.set(0);
+    indexerMotor.set(ControlMode.PercentOutput, 0);
   }
-
-  public void setClosed(){
-    door.setAngle(0); // TODO: find the angle at which the indexer hole would be closed
-  }
-
-  public void setOpen(){
-    door.setAngle(180); // TODO: find open angle
-  }
-
 }

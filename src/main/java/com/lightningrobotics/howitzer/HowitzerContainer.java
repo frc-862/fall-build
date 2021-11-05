@@ -26,7 +26,6 @@ public class HowitzerContainer extends LightningContainer {
 
     // GAMEPADS
     private static final XboxController driver = new XboxController(0);
-    private static final XboxController operator = new XboxController(JoystickConstants.OPERATOR);
 
     // ROBOT COMPONENTS
     private static final LightningIMU imu = LightningIMU.pigeon(RobotMap.PIGEON);
@@ -39,6 +38,7 @@ public class HowitzerContainer extends LightningContainer {
     @Override
     protected void configureDefaultCommands() {
         drivetrain.setDefaultCommand(new SwerveDriveCommand(drivetrain, imu, driver, true));
+        shooter.setDefaultCommand(new RunShooter(shooter));
     }
 
     @Override
@@ -52,9 +52,9 @@ public class HowitzerContainer extends LightningContainer {
 
     @Override
     protected void configureButtonBindings() { 
-        (new JoystickButton(operator, 1)).whileHeld(new RunShooter(shooter)); // TODO: change the the button we want to run the shooter
-        (new JoystickButton(operator, 1)).whileHeld(new RunIndexer(indexer, IndexerConstants.MOTOR_POWER)); // TODO: change the the button we want to run the shooter
-        (new JoystickButton(operator, 2)).whileHeld(new RunIndexer(indexer, -IndexerConstants.MOTOR_POWER)); // reverse and ^
+        //(new JoystickButton(driver, 1)).whileHeld(new RunShooter(shooter));
+        (new JoystickButton(driver, 1)).whileHeld(new RunIndexer(indexer, IndexerConstants.MOTOR_POWER)); 
+        (new JoystickButton(driver, 2)).whileHeld(new RunIndexer(indexer, -IndexerConstants.MOTOR_POWER)); 
     }
 
     @Override
