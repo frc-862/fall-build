@@ -25,7 +25,7 @@ import frc.lightning.subsystems.IMU;
 
 public class IllusionContainer extends LightningContainer {
 
-    // GAMEPADS
+    // GAMEPADS // cds nutz
     private static final XboxController control = new XboxController(JoystickConstants.DRIVER);
 
     // ROBOT COMPONENTS
